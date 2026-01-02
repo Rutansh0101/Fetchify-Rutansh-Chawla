@@ -1,0 +1,12 @@
+{
+  "name": "fetchify",
+  "version": "1.0.0",
+  "description": "This library is used to make http requests over servers. Made by Rutansh Chawla",
+  "license": "ISC",
+  "author": "Rutansh Chawla",
+  "type": "module",
+  "main": "fetchify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
