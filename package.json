@@ -1,6 +1,6 @@
 {
   "name": "@rutansh0101/fetchify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A modern, lightweight HTTP client library built on top of the native Fetch API with axios-like interface, interceptors, and timeout support",
   "license": "MIT",
   "author": "Rutansh Chawla",
