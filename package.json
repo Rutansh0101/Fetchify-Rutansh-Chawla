@@ -1,11 +1,46 @@
 {
-  "name": "fetchify",
+  "name": "@rutansh0101/fetchify",
   "version": "1.0.0",
-  "description": "This library is used to make http requests over servers. Made by Rutansh Chawla",
-  "license": "ISC",
+  "description": "A modern, lightweight HTTP client library built on top of the native Fetch API with axios-like interface, interceptors, and timeout support",
+  "license": "MIT",
   "author": "Rutansh Chawla",
   "type": "module",
   "main": "fetchify.js",
+  "module": "fetchify.js",
+  "exports": {
+    ".": {
+      "import": "./fetchify.js",
+      "require": "./fetchify.js"
+    }
+  },
+  "files": [
+    "fetchify.js",
+    "README.md"
+  ],
+  "keywords": [
+    "fetch",
+    "http",
+    "ajax",
+    "request",
+    "client",
+    "axios",
+    "interceptors",
+    "promise",
+    "frontend",
+    "react",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rutansh0101/Fetchify-Rutansh-Chawla"
+  },
+  "bugs": {
+    "url": "https://github.com/Rutansh0101/Fetchify-Rutansh-Chawla/issues"
+  },
+  "homepage": "https://github.com/Rutansh0101/Fetchify-Rutansh-Chawla#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }

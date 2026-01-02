@@ -1,0 +1,8 @@
+node_modules/
+app.js
+tasks.md
+.git/
+.gitignore
+*.log
+*.tgz
+PUBLISHING_GUIDE.md

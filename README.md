@@ -1,5 +1,9 @@
 # Fetchify - A Lightweight HTTP Client Library
 
+[![npm version](https://img.shields.io/npm/v/@rutansh0101/fetchify.svg)](https://www.npmjs.com/package/@rutansh0101/fetchify)
+[![npm downloads](https://img.shields.io/npm/dm/@rutansh0101/fetchify.svg)](https://www.npmjs.com/package/@rutansh0101/fetchify)
+[![license](https://img.shields.io/npm/l/@rutansh0101/fetchify.svg)](https://github.com/Rutansh0101/Fetchify-Rutansh-Chawla/blob/main/LICENSE)
+
 Fetchify is a modern, lightweight HTTP client library built on top of the native Fetch API. It provides a clean, axios-like interface with support for interceptors, request/response transformation, timeout handling, and more.
 
 ---
@@ -26,17 +30,20 @@ Fetchify is a modern, lightweight HTTP client library built on top of the native
 
 ## Installation & Setup
 
-### Prerequisites
-- Node.js environment with ES6+ module support
-- Modern browser with Fetch API support
+### Installation
 
-### Setup
-1. Clone or download the project
-2. Ensure your project supports ES6 modules (add `"type": "module"` in package.json)
-3. Import Fetchify in your code:
+```bash
+npm install @rutansh0101/fetchify
+```
+
+### Prerequisites
+- Node.js 14+ or modern browser with Fetch API support
+- ES6+ module support
+
+### Import
 
 ```javascript
-import fetchify from "./fetchify.js";
+import fetchify from '@rutansh0101/fetchify';
 ```
 
 ---
