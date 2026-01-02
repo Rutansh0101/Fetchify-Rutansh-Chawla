@@ -1,3 +1,10 @@
+/**
+ * Fetchify - A Lightweight HTTP Client Library
+ * @author Rutansh Chawla
+ * @license MIT
+ * @version 1.0.0
+ */
+
 class Fetchify {
     // Implementation of Fetchify class
 
