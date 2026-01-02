@@ -53,7 +53,7 @@ import fetchify from '@rutansh0101/fetchify';
 ### Creating an Instance
 
 ```javascript
-import fetchify from "./fetchify.js";
+import fetchify from '@rutansh0101/fetchify';
 
 // Create an instance with base configuration
 const api = fetchify.create({
