@@ -19,8 +19,15 @@ Thumbs.db
 *.swp
 *.swo
 
-# Test files (optional - keep if you want to push)
+# Development/Personal files
 app.js
+tasks.md
+PUBLISHING_GUIDE.md
+GITHUB_UPLOAD.md
+image.png
+*.png
+*.jpg
+*.jpeg
 
 # Build files
 dist/
