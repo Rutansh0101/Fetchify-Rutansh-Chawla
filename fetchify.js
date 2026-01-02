@@ -9,15 +9,69 @@ class Fetchify {
         timeout: 1000
     };
 
+    // Storting interceptors:
+    requestInterceptors = []; // { successHandler, errorHandler } -> 1 interceptor.
+    responseInterceptors = []; // { successHandler, errorHandler } -> 1 interceptor.
+
     // Constructor to initialize Fetchify with user-defined config
     constructor(newConfig) {
-        this.#mergeConfig(newConfig);
+        this.config = this.#mergeConfig(newConfig);
     }
 
 
 
 
     // private methods (not accessible outside the class):
+
+
+    // Private method to handle the complete request process: start -> request_Interceptor -> dispatchRequest -> response_Interceptor -> end
+    async #request({ endPoint, config }) {
+        // Interceptors are used to modify requests or responses before they are handled.
+        // Request Interceptor: Modify the request config before sending the request.
+        // Example: You can add authentication tokens, log requests, etc.
+        // Response Interceptor: Modify the response before returning it to the caller.
+        // Example: You can handle global errors, log responses, etc.
+
+        const finalConfig = this.#mergeConfig(config);
+
+        
+        const chain = [
+            ...this.requestInterceptors,
+            { // this syntax is used to add the dispatchRequest method after request interceptors.
+                // we are not giving parameters like endPoint and config here, we will do that while calling the whole chain. as previous interceptor's output will be this interceptor's input. they are returning an object containing endPoint and config.
+                successHandler: this.#dispatchRequest.bind(this), // bind 'this' to maintain context
+            },
+            ...this.responseInterceptors
+        ]
+
+
+        let promise = Promise.resolve({ endPoint, config: finalConfig });
+
+        // iterate over the chain of interceptors
+        for (const { successHandler, errorHandler } of chain) {
+            promise = promise.then((reponseOfPrevPromise) => {
+                try{ // this is the success function of then, it will be called if previous promise is resolved.
+                    return successHandler(reponseOfPrevPromise);
+                }
+                catch (error) { // this catch block will handle errors thrown in successHandler
+                    if(errorHandler) {
+                        return errorHandler(error);
+                    }
+                    else {
+                        return Promise.reject(error);
+                    }
+                }
+            }, (Error) => { // this error function will only be called if previous promise is rejected.
+                if(errorHandler) {
+                    return errorHandler(Error);
+                }
+                else {
+                    return Promise.reject(Error);
+                }
+            }); // we pass 2 parameters to then, first for success case, second for error case.
+        }
+        return promise; // final promise after all interceptors have been applied.
+    }
 
 
     // Private method to dispatch the request, i made this function to reduce redundancy and code reusability.
@@ -89,9 +143,10 @@ class Fetchify {
         }
     }
 
+
     // Private method to merge user-defined config with default config
     #mergeConfig(newConfig) {
-        this.config = {
+        return {
             ...this.config, // copy of existing config
             ...newConfig, // copy of user-defined config
             headers: { // merge headers specifically
@@ -100,6 +155,7 @@ class Fetchify {
             }
         };
     }
+
 
     // Private method to merge two config objects
     #mergeConfigs(config1, config2) {
@@ -121,17 +177,43 @@ class Fetchify {
 
     // Method to perform GET request
     async get(endPoint, tempConfig = {}) {
-        // Call dispatchRequest with method set to GET
-        return this.#dispatchRequest({ endPoint, config: { ...tempConfig, method: 'GET' } });
+        // Call request with method set to GET, it will go through the whole chain of interceptors.:
+        return this.#request({ endPoint, config: { ...tempConfig, method: 'GET' } });
     }
-
 
     // Method to perform POST request
     async post(endPoint, tempConfig = {}) {
-        // Call dispatchRequest with method set to POST
-        return this.#dispatchRequest({ endPoint, config: { ...tempConfig, method: 'POST' } });
+        // Call request with method set to POST, it will go through the whole chain of interceptors.:
+        return this.#request({ endPoint, config: { ...tempConfig, method: 'POST' } });
     }
 
+    // Method to perform PUT request
+    async put(endPoint, tempConfig = {}) {
+        // Call request with method set to PUT, it will go through the whole chain of interceptors.:
+        return this.#request({ endPoint, config: { ...tempConfig, method: 'PUT' } });
+    }
+
+    // Method to perform DELETE request
+    async delete(endPoint, tempConfig = {}) {
+        // Call request with method set to DELETE, it will go through the whole chain of interceptors.:
+        return this.#request({ endPoint, config: { ...tempConfig, method: 'DELETE' } });
+    }
+
+    // Method to perform PATCH request
+    async patch(endPoint, tempConfig = {}) {
+        // Call request with method set to PATCH, it will go through the whole chain of interceptors.:
+        return this.#request({ endPoint, config: { ...tempConfig, method: 'PATCH' } });
+    }
+
+    // Method to add request interceptor
+    addRequestInterceptor(successHandler, errorHandler) {
+        this.requestInterceptors.push({ successHandler, errorHandler });
+    }
+
+    // Method to add response interceptor
+    addResponseInterceptor(successHandler, errorHandler) {
+        this.responseInterceptors.push({ successHandler, errorHandler });
+    }
 }
 
 

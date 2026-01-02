@@ -1,3 +1,0 @@
-Things i have implemented:
-[v] config merging.
-[v] timeout implemented using abort Controller.
