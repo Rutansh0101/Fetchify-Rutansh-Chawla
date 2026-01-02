@@ -814,7 +814,7 @@ Separation provides flexibility and reusability.
 ### Complete Example with All Features
 
 ```javascript
-import fetchify from "./fetchify.js";
+import fetchify from '@rutansh0101/fetchify';
 
 // 1. Create instance with base config
 const api = fetchify.create({
