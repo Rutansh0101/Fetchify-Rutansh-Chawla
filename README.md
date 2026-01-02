@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@rutansh0101/fetchify.svg)](https://www.npmjs.com/package/@rutansh0101/fetchify)
 [![npm downloads](https://img.shields.io/npm/dm/@rutansh0101/fetchify.svg)](https://www.npmjs.com/package/@rutansh0101/fetchify)
-[![license](https://img.shields.io/npm/l/@rutansh0101/fetchify.svg)](https://github.com/Rutansh0101/Fetchify-Rutansh-Chawla/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/@rutansh0101/fetchify.svg)](https://github.com/Rutansh0101/Fetchify-Rutansh-Chawla/blob/master/LICENSE)
 
 Fetchify is a modern, lightweight HTTP client library built on top of the native Fetch API. It provides a clean, axios-like interface with support for interceptors, request/response transformation, timeout handling, and more.
 
